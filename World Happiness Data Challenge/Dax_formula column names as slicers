@@ -1,0 +1,50 @@
+/// Dax : How to create column names as slicers 
+
+Link  to the conversation :  https://community.powerbi.com/t5/Desktop/Slicer-by-columns-name/td-p/228370
+
+
+Happiness = 
+VAR Free =
+    IF (
+        CONTAINS ( Slicer, Slicer[Selection], "Freedom to make life choices" ) = TRUE (),
+        SUM ('World Happiness Report 2022'[Freedom to make life choices] ),
+        0
+    )
+VAR GDP =
+    IF (
+        CONTAINS ( Slicer, Slicer[Selection], "GDP per capita" ) = TRUE (),
+        SUM ( 'World Happiness Report 2022'[GDP per capita] ),
+        0
+    )
+VAR Dystopia =
+    IF (
+        CONTAINS ( Slicer, Slicer[Selection], "Dystopia (1.83) + residual" ) = TRUE (),
+        SUM ('World Happiness Report 2022'[Dystopia (1.83) + residual]),
+        0
+    )
+VAR Social =
+    IF (
+        CONTAINS ( Slicer, Slicer[Selection], "Social support" ) = TRUE (),
+        SUM ( 'World Happiness Report 2022'[Social support] ),
+        0
+    )
+VAR Perception =
+    IF (
+        CONTAINS ( Slicer, Slicer[Selection], "Perceptions of corruption" ) = TRUE (),
+        SUM ( 'World Happiness Report 2022'[Perceptions of corruption]),
+        0
+    )
+VAR Healthy =
+    IF (
+        CONTAINS ( Slicer, Slicer[Selection], "Healthy life expectancy" ) = TRUE (),
+        SUM ( 'World Happiness Report 2022'[Healthy life expectancy] ),
+        0
+    )
+VAR Generosity =
+    IF (
+        CONTAINS ( Slicer, Slicer[Selection], "Generosity" ) = TRUE (),
+        SUM ( 'World Happiness Report 2022'[Generosity] ),
+        0
+    )
+RETURN
+    Free + GDP + Dystopia + Social + Perception +  Healthy + Generosity 
